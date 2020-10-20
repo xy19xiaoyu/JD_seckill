@@ -58,128 +58,146 @@ namespace JD_seckill
             tstxtUrl.Width = toolStrip1.Width - 250;
         }
         private bool HasInitCartUrl { get; set; } = false;
+        private bool HasReservation { get; set; } = false;
         private void timer1_Tick(object sender, EventArgs e)
         {
-            var window = webView1.GetDOMWindow();
-            if (window == null) return;
-            var doc = window.document;
-            if (doc == null) return;
-            switch (webView1.Title)
+            try
             {
-                case "京东-欢迎登录":
-                    this.tsbMsg.Text = "请登录";
-                    return;
-                case "商品已成功加入购物车":
-                    var GotoShoppingCart = doc.getElementById("GotoShoppingCart");
-                    try
-                    {
-                        GotoShoppingCart?.InvokeFunction("click");
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.ToString());
-                    }
-
-                    tsbMsg.Text = "点击去购物车";
-                    break;
-                case "京东商城 - 购物车":
-                case "我的购物车 - 京东商城":
-                    //去结算
-                    var GoPay = doc.getElementsByTagName("A");
-                    foreach (var item_A in GoPay)
-                    {
-                        if (item_A.innerText == null) continue;
-                        if (item_A.className == "common-submit-btn")
+                var window = webView1.GetDOMWindow();
+                if (window == null) return;
+                var doc = window.document;
+                if (doc == null) return;
+                switch (webView1.Title)
+                {
+                    case "京东-欢迎登录":
+                        this.tsbMsg.Text = "请登录";
+                        return;
+                    case "商品已成功加入购物车":
+                        var GotoShoppingCart = doc.getElementById("GotoShoppingCart");
+                        try
                         {
-
-                            Thread.Sleep(100);
-                            if (!isCompleted) return;
-                            try
-                            {
-                                item_A.InvokeFunction("click");
-                                tsbMsg.Text = "点击-去结算";
-                                hasClicked = true;
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine(ex.ToString());
-                            }
-
-                            break;
+                            GotoShoppingCart?.InvokeFunction("click");
                         }
-                    }
-                    break;
-                case "订单结算页 -京东商城":
-                    //提交订单
-                    var order_submit = doc.getElementById("order-submit");
-                    try
-                    {
-                        order_submit?.InvokeFunction("click");
-                        tsbMsg.Text = "点击-订单提交";
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.ToString());
-                    }
-
-                    break;
-                default:
-                    var items = doc.getElementsByTagName("div");
-                    foreach (var item in items)
-                    {
-                        if (item.innerText == null) continue;
-                        if (item.className != "activity-message")
+                        catch (Exception ex)
                         {
-                            Console.WriteLine(item.className);
-                            continue;
+                            Console.WriteLine(ex.ToString());
                         }
-                        Console.WriteLine($"innerText:{item.innerText}");
-                        if (item.innerText.ToString().Contains("结束"))
-                        {
-                            if (HasInitCartUrl) continue;
 
-                            //添加到购物车
-                            var InitCartUrl = doc.getElementById("InitCartUrl");
-                            if (InitCartUrl != null)
+                        tsbMsg.Text = "点击去购物车";
+                        break;
+                    case "京东商城 - 购物车":
+                    case "我的购物车 - 京东商城":
+                        //去结算
+                        var GoPay = doc.getElementsByTagName("A");
+                        foreach (var item_A in GoPay)
+                        {
+                            if (item_A.innerText == null) continue;
+                            if (item_A.className == "common-submit-btn")
                             {
+
+                                Thread.Sleep(100);
+                                if (!isCompleted) return;
                                 try
                                 {
-                                    InitCartUrl?.InvokeFunction("click");
-                                    tsbMsg.Text = "点击-添加到购物车";
-                                    HasInitCartUrl = true;
+                                    item_A.InvokeFunction("click");
+                                    tsbMsg.Text = "已去结算";
+                                    hasClicked = true;
                                 }
                                 catch (Exception ex)
                                 {
-                                    Console.WriteLine(ex);
+                                    Console.WriteLine(ex.ToString());
                                 }
 
+                                break;
                             }
-
-                            var reservation = doc.getElementById("btn-reservation");
-                            if (reservation != null)
-                            {
-                                try
-                                {
-                                    reservation?.InvokeFunction("click");
-                                    tsbMsg.Text = "点击-预约";
-                                    HasInitCartUrl = true;
-                                }
-                                catch (Exception ex)
-                                {
-                                    Console.WriteLine(ex);
-                                }
-                            }
-                            break;
-                        }
-                        else
-                        {
-                            tsbMsg.Text = item.innerText;
-
                         }
                         break;
-                    }
-                    return;
+                    case "订单结算页 -京东商城":
+                        //提交订单
+                        var order_submit = doc.getElementById("order-submit");
+                        try
+                        {
+                            order_submit?.InvokeFunction("click");
+                            tsbMsg.Text = "已订单提交";
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.ToString());
+                        }
+
+                        break;
+                    default:
+
+                        var items = doc.getElementsByTagName("div");
+                        foreach (var item in items)
+                        {
+                            if (item.innerText == null) continue;
+                            if (item.className != "activity-message")
+                            {
+                                Console.WriteLine(item.className);
+                                continue;
+                            }
+                            Console.WriteLine($"innerText:{item.innerText}");
+                            if (item.innerText.ToString().Contains("结束"))
+                            {
+                                if (HasInitCartUrl) continue;
+
+                                //添加到购物车
+                                var InitCartUrl = doc.getElementById("InitCartUrl");
+                                if (InitCartUrl != null)
+                                {
+                                    try
+                                    {
+                                        InitCartUrl?.InvokeFunction("click");
+                                        tsbMsg.Text = "已添加到购物车";
+                                        HasInitCartUrl = true;
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine(ex);
+                                    }
+
+                                }
+                                break;
+                            }
+                            else if (item.innerText.ToString().Contains("预约"))
+                            {
+                                var reservation = doc.getElementById("btn-reservation");
+                                if (reservation != null)
+                                {
+                                    try
+                                    {
+                                        if (HasReservation)
+                                        {
+                                            tsbMsg.Text = item.innerText;
+                                            continue;
+                                        }
+                                        reservation?.InvokeFunction("click");
+                                        HasReservation = true;
+                                        tsbMsg.Text = "已预约";
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine(ex);
+                                    }
+                                }
+                                break;
+                            }
+                            else
+                            {
+                                tsbMsg.Text = item.innerText;
+
+                            }
+                            break;
+                        }
+                        return;
+                }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
         }
 
         private void tsbGo_Click(object sender, EventArgs e)
@@ -206,6 +224,7 @@ namespace JD_seckill
         {
             HasInitCartUrl = false;
             hasClicked = false;
+            HasReservation = false;
             timer1.Start();
         }
     }
