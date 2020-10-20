@@ -154,6 +154,21 @@ namespace JD_seckill
                                 }
 
                             }
+
+                            var reservation = doc.getElementById("btn-reservation");
+                            if (reservation != null)
+                            {
+                                try
+                                {
+                                    reservation?.InvokeFunction("click");
+                                    tsbMsg.Text = "点击-预约";
+                                    HasInitCartUrl = true;
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine(ex);
+                                }
+                            }
                             break;
                         }
                         else

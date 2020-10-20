@@ -41,6 +41,10 @@
     <Reference Include="EO.WebBrowser.WinForm">
       <HintPath>C:\Program Files (x86)\Essential Objects\EO.Total 2020\EO.WebBrowser.WinForm.dll</HintPath>
     </Reference>
+    <Reference Include="EO.WebEngine, Version=20.2.90.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Essential Objects\EO.Total 2020\EO.WebEngine.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -87,6 +91,7 @@
     <Content Include="EO.Base.dll" />
     <Content Include="EO.WebBrowser.dll" />
     <Content Include="EO.WebBrowser.WinForm.dll" />
+    <Content Include="EO.WebEngine.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
