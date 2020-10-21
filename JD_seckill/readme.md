@@ -28,3 +28,44 @@ https://cart.jd.com/gate.action?pid=100008305749&pcount=1&ptype=1
 
 - r=随机数
 https://cart.jd.com/cart.action?r=0.24858477566005743
+
+
+### 解析提交订单
+
+
+
+
+### 获取cookis
+
+		[DllImport("wininet.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        static extern bool InternetGetCookieEx(string pchURL, string pchCookieName, StringBuilder pchCookieData, ref System.UInt32 pcchCookieData, int dwFlags, IntPtr lpReserved);
+
+        [DllImport("wininet.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        static extern int InternetSetCookieEx(string lpszURL, string lpszCookieName, string lpszCookieData, int dwFlags, IntPtr dwReserved);
+
+        private static string GetCookies(string url)
+        {
+            uint datasize = 256;
+            StringBuilder cookieData = new StringBuilder((int)datasize);
+            if (!InternetGetCookieEx(url, null, cookieData, ref datasize, 0x2000, IntPtr.Zero))
+            {
+                if (datasize < 0)
+                    return null;
+
+
+                cookieData = new StringBuilder((int)datasize);
+                if (!InternetGetCookieEx(url, null, cookieData, ref datasize, 0x00002000, IntPtr.Zero))
+                    return null;
+            }
+            return cookieData.ToString();
+        }
+
+
+###  全新逻辑
+
+1. 页面登陆后获取cookies
+2. 请求时间服务器校准时间
+3. 设置商品名称
+4. 设置线程数量
+5. 时间到之后 多线程发请求
+6. 到提交界面

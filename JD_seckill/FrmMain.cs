@@ -25,6 +25,7 @@ namespace JD_seckill
             webView1.BeforeNavigate += WebView1_BeforeNavigate;
             webView1.JSExtInvoke += WebView1_JSExtInvoke;
             webView1.Url = tstxtUrl.Text;
+            
 
         }
 
@@ -63,10 +64,11 @@ namespace JD_seckill
         {
             try
             {
-                var window = webView1.GetDOMWindow();
+                var window = webView1.GetDOMWindow();                
                 if (window == null) return;
                 var doc = window.document;
                 if (doc == null) return;
+                
                 switch (webView1.Title)
                 {
                     case "京东-欢迎登录":
