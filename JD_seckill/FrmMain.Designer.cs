@@ -38,10 +38,16 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbAuto = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
+            this.tsmSelectAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmGoPay = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPay = new System.Windows.Forms.ToolStripMenuItem();
             this.webControl1 = new EO.WinForm.WebControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.tsbMsg = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblGOCart = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsmGoCart = new System.Windows.Forms.ToolStripButton();
+            this.lblGOPay = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -60,7 +66,9 @@
             this.tsbGo,
             this.toolStripSeparator1,
             this.tsbAuto,
-            this.toolStripButton1});
+            this.toolStripButton1,
+            this.tsmGoCart,
+            this.toolStripSplitButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(800, 25);
@@ -81,8 +89,6 @@
             this.tstxtUrl.Name = "tstxtUrl";
             this.tstxtUrl.Size = new System.Drawing.Size(100, 25);
             this.tstxtUrl.Text = "https://miaosha.jd.com/";
-            this.tstxtUrl.Click += new System.EventHandler(this.tstxtUrl_Click);
-            this.tstxtUrl.TextChanged += new System.EventHandler(this.tstxtUrl_TextChanged);
             // 
             // tsbGo
             // 
@@ -119,6 +125,37 @@
             this.toolStripButton1.Text = "停止";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
+            // toolStripSplitButton1
+            // 
+            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmSelectAll,
+            this.tsmGoPay,
+            this.tsmPay});
+            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
+            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(32, 22);
+            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
+            // 
+            // tsmSelectAll
+            // 
+            this.tsmSelectAll.Name = "tsmSelectAll";
+            this.tsmSelectAll.Size = new System.Drawing.Size(180, 22);
+            this.tsmSelectAll.Text = "全选商品";
+            // 
+            // tsmGoPay
+            // 
+            this.tsmGoPay.Name = "tsmGoPay";
+            this.tsmGoPay.Size = new System.Drawing.Size(180, 22);
+            this.tsmGoPay.Text = "去结算";
+            // 
+            // tsmPay
+            // 
+            this.tsmPay.Name = "tsmPay";
+            this.tsmPay.Size = new System.Drawing.Size(180, 22);
+            this.tsmPay.Text = "提交订单";
+            // 
             // webControl1
             // 
             this.webControl1.BackColor = System.Drawing.Color.White;
@@ -138,18 +175,33 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbMsg});
+            this.lblGOCart,
+            this.lblGOPay});
             this.statusStrip1.Location = new System.Drawing.Point(0, 428);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(800, 22);
             this.statusStrip1.TabIndex = 8;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // tsbMsg
+            // lblGOCart
             // 
-            this.tsbMsg.Name = "tsbMsg";
-            this.tsbMsg.Size = new System.Drawing.Size(52, 17);
-            this.tsbMsg.Text = "tsbMsg";
+            this.lblGOCart.Name = "lblGOCart";
+            this.lblGOCart.Size = new System.Drawing.Size(0, 17);
+            // 
+            // tsmGoCart
+            // 
+            this.tsmGoCart.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsmGoCart.Image = ((System.Drawing.Image)(resources.GetObject("tsmGoCart.Image")));
+            this.tsmGoCart.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsmGoCart.Name = "tsmGoCart";
+            this.tsmGoCart.Size = new System.Drawing.Size(72, 22);
+            this.tsmGoCart.Text = "进入购物车";
+            this.tsmGoCart.Click += new System.EventHandler(this.tsmGoCart_Click);
+            // 
+            // lblGOPay
+            // 
+            this.lblGOPay.Name = "lblGOPay";
+            this.lblGOPay.Size = new System.Drawing.Size(0, 17);
             // 
             // FrmMain
             // 
@@ -183,7 +235,13 @@
         private EO.WinForm.WebControl webControl1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel tsbMsg;
+        private System.Windows.Forms.ToolStripStatusLabel lblGOCart;
+        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
+        private System.Windows.Forms.ToolStripMenuItem tsmSelectAll;
+        private System.Windows.Forms.ToolStripMenuItem tsmGoPay;
+        private System.Windows.Forms.ToolStripMenuItem tsmPay;
+        private System.Windows.Forms.ToolStripButton tsmGoCart;
+        private System.Windows.Forms.ToolStripStatusLabel lblGOPay;
     }
 }
 

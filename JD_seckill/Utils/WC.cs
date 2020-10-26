@@ -156,11 +156,11 @@ namespace JD_seckill
                         responseBody = reader.ReadToEnd();
                     }
                 }
-                
+
             }
-            else if(response.ContentEncoding.ToLower().Contains("br"))
+            else if (response.ContentEncoding.ToLower().Contains("br"))
             {
-                using(System.IO.Compression.BrotliStream stream = new BrotliStream)
+                
             }
             else
             {
