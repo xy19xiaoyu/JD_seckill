@@ -38,6 +38,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbAuto = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.tsmGoCart = new System.Windows.Forms.ToolStripButton();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.tsmSelectAll = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGoPay = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,7 +47,6 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblGOCart = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsmGoCart = new System.Windows.Forms.ToolStripButton();
             this.lblGOPay = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -125,6 +125,16 @@
             this.toolStripButton1.Text = "停止";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
+            // tsmGoCart
+            // 
+            this.tsmGoCart.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsmGoCart.Image = ((System.Drawing.Image)(resources.GetObject("tsmGoCart.Image")));
+            this.tsmGoCart.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsmGoCart.Name = "tsmGoCart";
+            this.tsmGoCart.Size = new System.Drawing.Size(72, 22);
+            this.tsmGoCart.Text = "进入购物车";
+            this.tsmGoCart.Click += new System.EventHandler(this.tsmGoCart_Click);
+            // 
             // toolStripSplitButton1
             // 
             this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -141,19 +151,19 @@
             // tsmSelectAll
             // 
             this.tsmSelectAll.Name = "tsmSelectAll";
-            this.tsmSelectAll.Size = new System.Drawing.Size(180, 22);
+            this.tsmSelectAll.Size = new System.Drawing.Size(124, 22);
             this.tsmSelectAll.Text = "全选商品";
             // 
             // tsmGoPay
             // 
             this.tsmGoPay.Name = "tsmGoPay";
-            this.tsmGoPay.Size = new System.Drawing.Size(180, 22);
+            this.tsmGoPay.Size = new System.Drawing.Size(124, 22);
             this.tsmGoPay.Text = "去结算";
             // 
             // tsmPay
             // 
             this.tsmPay.Name = "tsmPay";
-            this.tsmPay.Size = new System.Drawing.Size(180, 22);
+            this.tsmPay.Size = new System.Drawing.Size(124, 22);
             this.tsmPay.Text = "提交订单";
             // 
             // webControl1
@@ -187,16 +197,6 @@
             // 
             this.lblGOCart.Name = "lblGOCart";
             this.lblGOCart.Size = new System.Drawing.Size(0, 17);
-            // 
-            // tsmGoCart
-            // 
-            this.tsmGoCart.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsmGoCart.Image = ((System.Drawing.Image)(resources.GetObject("tsmGoCart.Image")));
-            this.tsmGoCart.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsmGoCart.Name = "tsmGoCart";
-            this.tsmGoCart.Size = new System.Drawing.Size(72, 22);
-            this.tsmGoCart.Text = "进入购物车";
-            this.tsmGoCart.Click += new System.EventHandler(this.tsmGoCart_Click);
             // 
             // lblGOPay
             // 
